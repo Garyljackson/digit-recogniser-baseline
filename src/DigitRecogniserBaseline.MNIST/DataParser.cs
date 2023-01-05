@@ -2,6 +2,16 @@
 {
     public static class DataParser
     {
+        public static async Task<List<DataItem>> GetTrainingDataAsync()
+        {
+            return await GetDataAsync(Constants.TrainImagesExtractedFileName, Constants.TrainLabelsExtractedFileName);
+        }
+        
+        public static async Task<List<DataItem>> GetTestDataAsync()
+        {
+            return await GetDataAsync(Constants.TestImagesExtractedFileName, Constants.TestLabelsExtractedFileName);
+        }
+
         private static async Task<byte[]> ReadFileContentsAsync(string filePath)
         {
             return await File.ReadAllBytesAsync(filePath);
@@ -16,20 +26,20 @@
             return (data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3];
         }
 
-        private static int[,] ReadImage(IReadOnlyList<byte> data, int offset, int numRows, int numCols)
+        private static int[,] ReadImage(IReadOnlyList<byte> imagesData, int offset, int numRows, int numCols)
         {
             var image = new int[numRows, numCols];
             for (var row = 0; row < numRows; row++)
             {
                 for (var col = 0; col < numCols; col++)
                 {
-                    image[row, col] = data[offset + row * numCols + col];
+                    image[row, col] = imagesData[offset + row * numCols + col];
                 }
             }
             return image;
         }
 
-        private static List<DataItem> GetDataItems(byte[] imagesData, byte[] labelsData)
+        private static List<DataItem> GetDataItems(IReadOnlyList<byte> imagesData, IReadOnlyList<byte> labelsData)
         {
             var dataItems = new List<DataItem>();
 
@@ -49,30 +59,19 @@
             return dataItems;
         }
 
-        private static async Task<List<DataItem>> GetDataAsync(string imagesPath, string labelsPath)
+        private static async Task<List<DataItem>> GetDataAsync(string imagesFileName, string labelsFileName)
         {
             var binPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             if (binPath is null)
                 throw new Exception("Unable to locate application folder");
 
-            var imagesFileContents = await ReadFileContentsAsync(Path.Combine(binPath, Constants.AssetsPath, imagesPath));
-            var labelsFileContents = await ReadFileContentsAsync(Path.Combine(binPath, Constants.AssetsPath, labelsPath));
+            var imagesFileContents = await ReadFileContentsAsync(Path.Combine(binPath, Constants.AssetsPath, imagesFileName));
+            var labelsFileContents = await ReadFileContentsAsync(Path.Combine(binPath, Constants.AssetsPath, labelsFileName));
 
             var items = GetDataItems(imagesFileContents, labelsFileContents);
 
             return items;
         }
-
-        public static async Task<List<DataItem>> GetTrainingDataAsync()
-        {
-            return await GetDataAsync(Constants.TrainImagesExtractedName, Constants.TrainLabelsExtractedName);
-        }
-
-        public static async Task<List<DataItem>> GetTestDataAsync()
-        {
-            return await GetDataAsync(Constants.TestImagesExtractedName, Constants.TestLabelsExtractedName);
-        }
-
     }
 }

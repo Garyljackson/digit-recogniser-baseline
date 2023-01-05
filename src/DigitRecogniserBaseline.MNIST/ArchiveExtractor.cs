@@ -26,10 +26,10 @@ namespace DigitRecogniserBaseline.MNIST
 
             var assetsPath = Path.Combine(binPath, Constants.AssetsPath);
 
-            await ExtractArchiveData($"{Constants.TrainImagesArchiveName}", $"{Constants.TrainImagesExtractedName}", assetsPath);
-            await ExtractArchiveData($"{Constants.TrainLabelsArchiveName}", $"{Constants.TrainLabelsExtractedName}", assetsPath);
-            await ExtractArchiveData($"{Constants.TestImagesArchiveName}", $"{Constants.TestImagesExtractedName}", assetsPath);
-            await ExtractArchiveData($"{Constants.TestLabelsArchiveName}", $"{Constants.TestLabelsExtractedName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TrainImagesArchiveFileName}", $"{Constants.TrainImagesExtractedFileName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TrainLabelsArchiveFileName}", $"{Constants.TrainLabelsExtractedFileName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TestImagesArchiveFileName}", $"{Constants.TestImagesExtractedFileName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TestLabelsArchiveFileName}", $"{Constants.TestLabelsExtractedFileName}", assetsPath);
 
         }
     }
