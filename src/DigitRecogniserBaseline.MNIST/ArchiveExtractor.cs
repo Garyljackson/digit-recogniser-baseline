@@ -1,16 +1,10 @@
 ﻿using System.IO.Compression;
 
-namespace DigitRecogniserBaseline.ConsoleApp
+namespace DigitRecogniserBaseline.MNIST
 {
     internal static class ArchiveExtractor
     {
-        // Dataset archives downloaded from http://yann.lecun.com/exdb/mnist/
-
-        private const string TrainImagesName = "train-images-idx3-ubyte";
-        private const string TrainLabelsName = "train-labels-idx1-ubyte";
-        private const string TestImagesName = "t10k-images-idx3-ubyte";
-        private const string TestLabelsName = "t10k-labels-idx1-ubyte";
-        private const string AssetsPath = "assets";
+        // Data set archives downloaded from http://yann.lecun.com/exdb/mnist/
         
         private static async Task ExtractArchiveData(string archiveFileName, string outputFileName, string path)
         {
@@ -30,12 +24,12 @@ namespace DigitRecogniserBaseline.ConsoleApp
             if (binPath is null)
                 throw new Exception("Unable to locate application folder");
 
-            var assetsPath = Path.Combine(binPath, AssetsPath);
+            var assetsPath = Path.Combine(binPath, Constants.AssetsPath);
 
-            await ExtractArchiveData($"{TrainImagesName}.gz", $"{TrainImagesName}_Extracted", assetsPath);
-            await ExtractArchiveData($"{TrainLabelsName}.gz", $"{TrainLabelsName}_Extracted", assetsPath);
-            await ExtractArchiveData($"{TestImagesName}.gz", $"{TestImagesName}_Extracted", assetsPath);
-            await ExtractArchiveData($"{TestLabelsName}.gz", $"{TestLabelsName}_Extracted", assetsPath);
+            await ExtractArchiveData($"{Constants.TrainImagesArchiveName}", $"{Constants.TrainImagesExtractedName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TrainLabelsArchiveName}", $"{Constants.TrainLabelsExtractedName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TestImagesArchiveName}", $"{Constants.TestImagesExtractedName}", assetsPath);
+            await ExtractArchiveData($"{Constants.TestLabelsArchiveName}", $"{Constants.TestLabelsExtractedName}", assetsPath);
 
         }
     }

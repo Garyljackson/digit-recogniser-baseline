@@ -29,4 +29,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DigitRecogniserBaseline.MNIST\DigitRecogniserBaseline.MNIST.csproj" />
+  </ItemGroup>
+
 </Project>

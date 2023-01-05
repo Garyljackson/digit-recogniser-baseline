@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using DigitRecogniserBaseline.ConsoleApp;
+using DigitRecogniserBaseline.MNIST;
 
-await ArchiveExtractor.ExtractAll();
+var data = await DataReader.ReadDataAsync();
 
 Console.WriteLine("Hello, World!");

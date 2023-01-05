@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitRecogniserBaseline.ConsoleApp", "DigitRecogniserBaseline.ConsoleApp\DigitRecogniserBaseline.ConsoleApp.csproj", "{4BE8EA4F-640C-4893-9EB3-CA573386F766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitRecogniserBaseline.ConsoleApp", "DigitRecogniserBaseline.ConsoleApp\DigitRecogniserBaseline.ConsoleApp.csproj", "{4BE8EA4F-640C-4893-9EB3-CA573386F766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitRecogniserBaseline.MNIST", "DigitRecogniserBaseline.MNIST\DigitRecogniserBaseline.MNIST.csproj", "{5C52272C-793B-4214-B1F1-0F3A41367535}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4BE8EA4F-640C-4893-9EB3-CA573386F766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE8EA4F-640C-4893-9EB3-CA573386F766}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE8EA4F-640C-4893-9EB3-CA573386F766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C52272C-793B-4214-B1F1-0F3A41367535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C52272C-793B-4214-B1F1-0F3A41367535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C52272C-793B-4214-B1F1-0F3A41367535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C52272C-793B-4214-B1F1-0F3A41367535}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
