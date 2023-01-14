@@ -5,19 +5,34 @@ var data = await DataReader.ReadDataAsync();
 
 var averagedDigits = ModelTrainer.Train(data);
 
-var idealThree = averagedDigits.First(item => item.Label == 3);
-var idealSeven = averagedDigits.First(item => item.Label == 7);
+var predictionList = new List<Prediction>();
 
-var testThree = data.TestingData.First(item => item.Label == 3);
+foreach (var testDataItem in data.TestingData)
+{
+    var prediction = DigitPredictor.Predict(averagedDigits, testDataItem);
+    var isAccuratePrediction = DigitPredictor.IsPredictionAccurate(prediction, testDataItem);
 
-await ImageWriter.WriteImageToFileAsync(idealThree.Image, "IdealThree.bmp");
-await ImageWriter.WriteImageToFileAsync(idealSeven.Image, "IdealSeven.bmp");
-await ImageWriter.WriteImageToFileAsync(testThree.Image, "TestThree.bmp");
+    predictionList.Add(new Prediction(prediction, isAccuratePrediction));
+    
+}
 
-var lossThree = LossCalculator.CalculateLoss(idealThree, testThree);
-var lossSeven = LossCalculator.CalculateLoss(idealSeven, testThree);
+var groupedPredictions = predictionList
+    .OrderBy(prediction => prediction.Predicted)
+    .GroupBy(prediction => prediction.Predicted);
 
-Console.WriteLine($"3 loss: {lossThree}");
-Console.WriteLine($"7 loss: {lossSeven}");
+double overAllAccuracy = 0;
 
-Console.WriteLine("Hello, World!");
+foreach (var groupedPrediction in groupedPredictions)
+{
+    double total = groupedPrediction.Count();
+    
+    double correctPredictions = groupedPrediction.Count(tuple => tuple.IsAccurate);
+
+    var accuracy = correctPredictions / total;
+
+    Console.WriteLine($"Accuracy for :{groupedPrediction.Key} - {accuracy}");
+    
+    overAllAccuracy += accuracy;
+}
+
+Console.WriteLine($"Overall Accuracy: {overAllAccuracy/10}");
