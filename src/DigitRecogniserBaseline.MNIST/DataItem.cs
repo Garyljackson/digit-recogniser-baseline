@@ -2,13 +2,13 @@
 {
     public class DataItem
     {
-        public DataItem(int label, int[,] image)
+        public DataItem(int label, double[,] image)
         {
             Label = label;
             Image = image;
         }
 
         public int Label { get; set; }
-        public int[,] Image { get; set; }
+        public double[,] Image { get; set; }
     }
 }

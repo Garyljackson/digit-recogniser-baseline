@@ -26,9 +26,9 @@
             return (data[offset] << 24) | (data[offset + 1] << 16) | (data[offset + 2] << 8) | data[offset + 3];
         }
 
-        private static int[,] ReadImage(IReadOnlyList<byte> imagesData, int offset, int numRows, int numCols)
+        private static double[,] ReadImage(IReadOnlyList<byte> imagesData, int offset, int numRows, int numCols)
         {
-            var image = new int[numRows, numCols];
+            var image = new double[numRows, numCols];
             for (var row = 0; row < numRows; row++)
             {
                 for (var col = 0; col < numCols; col++)

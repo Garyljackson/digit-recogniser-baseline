@@ -14,7 +14,7 @@ namespace DigitRecogniserBaseline.ConsoleApp
                 var numRows = grouping.First().Image.GetLength(0);
                 var numCols = grouping.First().Image.GetLength(1);
 
-                var averagedImage = new int[numRows, numCols];
+                var averagedImage = new double[numRows, numCols];
 
                 var totalDigits = grouping.Count();
 

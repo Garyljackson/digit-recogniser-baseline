@@ -5,7 +5,7 @@ namespace DigitRecogniserBaseline.MNIST
 {
     public static class ImageWriter
     {
-        public static async Task WriteImageToFileAsync(int[,] image, string outputFilePath)
+        public static async Task WriteImageToFileAsync(double[,] image, string outputFilePath)
         {
             var numRows = image.GetLength(0);
             var numCols = image.GetLength(1);

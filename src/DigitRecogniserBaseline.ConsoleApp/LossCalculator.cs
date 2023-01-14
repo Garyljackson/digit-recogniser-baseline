@@ -16,7 +16,7 @@ namespace DigitRecogniserBaseline.ConsoleApp
             {
                 for (var col = 0; col < numCols; col++)
                 {
-                    double difference = comparisonDigit.Image[row, col] - idealDigit.Image[row, col];
+                    var difference = comparisonDigit.Image[row, col] - idealDigit.Image[row, col];
                     sumSquaredDifferences += difference * difference;
                     count++;
                 }
