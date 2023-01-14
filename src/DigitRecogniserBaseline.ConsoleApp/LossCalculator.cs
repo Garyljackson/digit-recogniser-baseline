@@ -4,7 +4,16 @@ namespace DigitRecogniserBaseline.ConsoleApp
 {
     internal static class LossCalculator
     {
-        public static double CalculateRootMeanSquaredError(DataItem idealDigit, DataItem comparisonDigit)
+
+        public static double CalculateLoss(DataItem idealDigit, DataItem comparisonDigit)
+        {
+            var loss = CalculateRootMeanSquaredError(idealDigit, comparisonDigit);
+
+            // Generally when images are floats, the pixel values are expected to be between 0 and 1, so we will also divide by 255 here
+            return loss / 255;
+        }
+
+        private static double CalculateRootMeanSquaredError(DataItem idealDigit, DataItem comparisonDigit)
         {
             var numRows = idealDigit.Image.GetLength(0);
             var numCols = idealDigit.Image.GetLength(1);
